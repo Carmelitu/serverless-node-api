@@ -26,6 +26,11 @@ provider:
   region: sa-east-1
   apiGateway:
     shouldStartNameWithService: true
+plugins:
+  - serverless-offline
+custom:
+  serverless-offline:
+    httpPort: 4000
 
 # you can overwrite defaults here
 #  stage: dev
@@ -69,4 +74,4 @@ functions:
     events:
       - http:
           method: GET
-          path: /user
+          path: /user/{name}
