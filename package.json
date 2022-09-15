@@ -19,5 +19,9 @@
   "homepage": "https://github.com/Carmelitu/serverless-node-api#readme",
   "devDependencies": {
     "serverless-offline": "^10.0.2"
+  },
+  "dependencies": {
+    "@middy/core": "^3.3.2",
+    "@middy/http-json-body-parser": "^3.3.2"
   }
 }

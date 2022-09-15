@@ -1,6 +1,8 @@
 'use strict';
+const middy = require('@middy/core')
+const jsonBodyParser = require('@middy/http-json-body-parser')
 
-module.exports.hello = async (event) => {
+const hello = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -14,7 +16,7 @@ module.exports.hello = async (event) => {
   };
 };
 
-module.exports.helloUser = async (event) => {
+const helloUser = async (event) => {
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -27,3 +29,22 @@ module.exports.helloUser = async (event) => {
     ),
   };
 };
+
+const createUser = async (event) => {
+  const { body } = event;
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message: `Hello User ${body.user}`,
+        input: body,
+      },
+    ),
+  };
+};
+
+module.exports = {
+  createUser: middy(createUser).use(jsonBodyParser()),
+  hello,
+  helloUser
+}
